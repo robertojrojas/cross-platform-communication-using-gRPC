@@ -1,0 +1,62 @@
+Cross-Platform Communication Using gRPC
+GoLang Philly Meetup
+11 Apr 2017
+Tags: golangphilly, golang, docker
+
+Roberto Rojas
+Chariot Solutions
+robertojrojas@gmail.com
+@robertojrojas
+
+https://github.com/GoLangPhilly/presentations/201704/cross-platform-communication-using-gRPC
+
+
+* About Me
+
+- 20 years as Software Developer
+- mainly working on backend services *nix for environments
+- Java, NodeJS, Python, and C/C++
+- 2 years with Go
+
+
+* Agenda
+
+- Overview
+- Why gRPC
+- Up and Running with gRPC
+- Features
+- Demo
+- Resources
+- Thank you
+
+
+* Overview
+  contents...
+
+* Why gRPC
+  contents...
+
+* Up and Running with gRPC
+  contents...
+
+* Features
+  contents...
+
+
+* Demos
+
+- Go File Transfer to Java File Server
+
+- Node.js Client to Go Docker Service
+
+
+* Resources
+
+   https://github.com/GoLangPhilly/presentations/201704/cross-platform-communication-using-gRPC
+   
+   http://www.grpc.io/
+
+   https://app.pluralsight.com/library/courses/grpc-enhancing-application-communication/table-of-contents
+
+   https://app.pluralsight.com/library/courses/protocol-buffers-beyond-json-xml/table-of-contents
+

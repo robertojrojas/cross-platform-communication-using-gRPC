@@ -18,7 +18,8 @@ switch (option) {
         getAllContainers(client);
         break;
     case 2:
-        getContainerStats(client);
+        container = process.argv[3];
+        getContainerStats(client, container);
         break;
 }
 
@@ -33,13 +34,13 @@ function getAllContainers(client) {
     });
 }
 
-function getContainerStats(client) {
-    let call = client.getContainerStats({container: "ng1"});
+function getContainerStats(client, container) {
+    let call = client.getContainerStats({container: container});
 
-    call.on('data', function (data) {
+    call.on('data', function (stats) {
         console.log("\u001B[2J\u001B[0;0f") // clear screen
 
-        console.log(new Date(), data);
+        console.log(new Date(), stats);
     });
 }
 

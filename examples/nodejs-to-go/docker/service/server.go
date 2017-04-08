@@ -97,7 +97,7 @@ func (cs *containerService) GetContainerStats(csr *ContainerStatsRequest, stream
 			if err == io.EOF {
 				break
 			}
-			time.Sleep(100 * time.Millisecond)
+			time.Sleep(1000 * time.Millisecond)
 			continue
 		}
 

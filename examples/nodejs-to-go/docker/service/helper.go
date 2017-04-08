@@ -46,7 +46,7 @@ func convert(containerStats *types.StatsJSON) *ContainerStats {
 		Container:  containerStats.Name,
 		CpuPercentage: cpuPercent,
 		MemoryPercentage: memPercent,
-		MemoryLimit: memLimit,
+		MemoryLimit: convertMemoryLimit(memLimit),
 		MemorySizeType: convertMemorySize(memLimit),
 
 
@@ -85,6 +85,32 @@ const (
 	ZB
 	YB
 )
+
+func convertMemoryLimit(ml float64) float64 {
+	memoryLimit := MemSize(ml)
+
+	retVal := MemSize(memoryLimit)
+
+	switch {
+	case memoryLimit >= YB:
+		retVal = memoryLimit/YB
+	case memoryLimit >= ZB:
+		retVal = memoryLimit/ZB
+	case memoryLimit >= EB:
+		retVal = memoryLimit/EB
+	case memoryLimit >= PB:
+		retVal = memoryLimit/PB
+	case memoryLimit >= TB:
+		retVal = memoryLimit/TB
+	case memoryLimit >= GB:
+		retVal = memoryLimit/GB
+	case memoryLimit >= MB:
+		retVal = memoryLimit/MB
+	case memoryLimit >= KB:
+		retVal = memoryLimit/KB
+	}
+	return float64(retVal)
+}
 
 func convertMemorySize(ml float64) ContainerStats_MemorySize {
 

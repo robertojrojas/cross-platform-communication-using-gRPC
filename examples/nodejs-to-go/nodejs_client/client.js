@@ -18,10 +18,7 @@ switch (option) {
         getAllContainers(client);
         break;
     case 2:
-        addPhoto(client);
-        break;
-    case 5:
-        saveAll(client);
+        getContainerStats(client);
         break;
 }
 
@@ -33,6 +30,16 @@ function getAllContainers(client) {
         } else {
            console.log(response);
         }
+    });
+}
+
+function getContainerStats(client) {
+    let call = client.getContainerStats({container: "ng1"});
+
+    call.on('data', function (data) {
+        console.log("\u001B[2J\u001B[0;0f") // clear screen
+
+        console.log(new Date(), data);
     });
 }
 

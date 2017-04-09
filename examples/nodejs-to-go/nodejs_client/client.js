@@ -8,7 +8,17 @@ const grpc = require('grpc');
 const serviceDef = grpc.load(PROTO_PATH);
 const PORT = 9090;
 
-const client = new serviceDef.DockerService(`localhost:${PORT}`, grpc.credentials.createInsecure());
+//const client = new serviceDef.DockerService(`localhost:${PORT}`, grpc.credentials.createInsecure());
+
+const cacert = fs.readFileSync('examples/certs/ca.crt'),
+      cert = fs.readFileSync('examples/certs/client.crt'),
+      key = fs.readFileSync('examples/certs/client.key'),
+      kvpair = {
+          'private_key': key,
+          'cert_chain': cert
+      };
+const creds = grpc.credentials.createSsl(cacert, key, cert);
+const client = new serviceDef.DockerService(`localhost:${PORT}`, creds);
 
 
 var option = parseInt(process.argv[2], 10);

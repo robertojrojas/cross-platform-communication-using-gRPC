@@ -10,6 +10,7 @@ import (
 	"log"
 	"google.golang.org/grpc"
 	"golang.org/x/net/context"
+	"google.golang.org/grpc/credentials"
 )
 
 type containerService struct {}
@@ -25,7 +26,13 @@ func StartServer() error {
 	}
 	log.Printf("Listening on [%s]....\n", config.serverHostPost)
 
-	s := grpc.NewServer()
+	creds, err := credentials.NewServerTLSFromFile("examples/certs/client.crt", "examples/certs/client.key")
+	if err != nil {
+		log.Fatal(err)
+	}
+	opts := []grpc.ServerOption{grpc.Creds(creds)}
+
+	s := grpc.NewServer(opts...)
 	cs := &containerService{}
 
 	RegisterDockerServiceServer(s, cs)

@@ -53,7 +53,7 @@ Options for Interservice Communications
 - Cross language support
 - Scalable
 - Streaming
-- binary protocol using Protocol Buffers
+- Binary protocol using Protocol Buffers
 - Extensible
 - Load balancing
 - The framework is layered, isolated from transport protocol
@@ -63,15 +63,15 @@ Options for Interservice Communications
 
 * Up and Running with gRPC
 
-- Install the Protocal Buffer v3 Compiler
-  `https://github.com/google/protobuf/releases`
+- Install the Protocol Buffer v3 Compiler
+  https://github.com/google/protobuf/releases
 
 - Get the following packages
-   `go get google.golang.org/grpc`
-   `go get -u github.com/golang/protobuf/{proto,protoc-gen-go}`
+   go get google.golang.org/grpc
+   go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 
 - Write the gRPC Service
-
+  
 - Generate the gRPC Server/Client
 
 * Write the gRPC Service
@@ -83,24 +83,22 @@ Options for Interservice Communications
      ...
    }
    message GetAllContainersRequest {}
-   message ContainerCatalog {
-     repeated Container containers = 1;
-   }
    ...
-   message ContainerStats {
-      string container        = 1;
-      enum MemorySize {
-        B  = 0;
-       ....
-        YB = 8;
-      }
-      MemorySize memory_size_type = 5;
-   }
    service DockerService {
      rpc GetAllContainers(GetAllContainersRequest) returns (ContainerCatalog) {}
      rpc GetContainerStats(ContainerStatsRequest) returns (stream ContainerStats) {}
    }
 
+* RPC Call Styles
+
+- Unary
+   rpc GetAllContainers(GetAllContainersRequest) returns (ContainerCatalog) {}
+- Server Streaming
+   rpc GetContainerStats(ContainerStatsRequest) returns (stream ContainerStats) {}
+- Client Streaming
+   rpc Upload (stream FileRequest) returns (FileResponse) {}
+- Bidirectional Streaming
+   rpc Bidirectional (stream Input) returns (stream Ouptut) {}
 
 * Generate the gRPC Server/Client
 

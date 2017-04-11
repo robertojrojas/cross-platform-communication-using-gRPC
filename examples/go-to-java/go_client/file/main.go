@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	chunkSize = 1 * 1024
+	chunkSize = 1024 * 1024
 )
 type config struct {
 	serverHostPost string

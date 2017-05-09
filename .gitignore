@@ -9,6 +9,7 @@ _test
 .idea
 node_modules
 target
+.DS_Store
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -26,3 +27,6 @@ _testmain.go
 *.test
 *.prof
 *.iml
+.classpath
+.project
+.settings

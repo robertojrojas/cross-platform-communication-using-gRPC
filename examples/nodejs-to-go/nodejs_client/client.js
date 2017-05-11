@@ -10,9 +10,9 @@ const PORT = 9090;
 
 //const client = new serviceDef.DockerService(`localhost:${PORT}`, grpc.credentials.createInsecure());
 
-const cacert = fs.readFileSync('examples/certs/ca.crt'),
-      cert = fs.readFileSync('examples/certs/client.crt'),
-      key = fs.readFileSync('examples/certs/client.key'),
+const cacert = fs.readFileSync('../../certs/ca.crt'),
+      cert = fs.readFileSync('../../certs/client.crt'),
+      key = fs.readFileSync('../../certs/client.key'),
       kvpair = {
           'private_key': key,
           'cert_chain': cert
@@ -28,7 +28,7 @@ switch (option) {
         getAllContainers(client);
         break;
     case 2:
-        container = process.argv[3];
+        var container = process.argv[3];
         getContainerStats(client, container);
         break;
 }

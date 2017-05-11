@@ -1,20 +1,20 @@
 package service
 
 import (
-	"github.com/docker/docker/client"
-	"github.com/docker/docker/api/types"
 	"encoding/json"
-	"time"
 	"io"
-	"net"
 	"log"
-	"google.golang.org/grpc"
+	"net"
+	"time"
+
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/client"
 	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
 
-type containerService struct {}
-
+type containerService struct{}
 
 func StartServer() error {
 
@@ -26,7 +26,8 @@ func StartServer() error {
 	}
 	log.Printf("Listening on [%s]....\n", config.serverHostPost)
 
-	creds, err := credentials.NewServerTLSFromFile("examples/certs/client.crt", "examples/certs/client.key")
+	creds, err := credentials.NewServerTLSFromFile("../../../examples/certs/client.crt",
+		"../../../examples/certs/client.key")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,7 +51,7 @@ func (cs *containerService) GetAllContainers(context.Context, *GetAllContainersR
 	defer cli.Close()
 
 	clo := types.ContainerListOptions{
-		All:true,
+		All: true,
 	}
 	allContainers, err := cli.ContainerList(context.Background(), clo)
 	if err != nil {
@@ -116,5 +117,3 @@ func (cs *containerService) GetContainerStats(csr *ContainerStatsRequest, stream
 	return nil
 
 }
-
-

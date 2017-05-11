@@ -3,7 +3,7 @@ Then install [Maven](https://maven.apache.org/install.html)
 
 To generate the Go gRPC sources:
 
-`protoc -I ./pb ./pb/docker/service.proto --go_out=plugins=grpc:.`
+`protoc -I ./pb ./pb/file/service.proto --go_out=plugins=grpc:.`
 
 To generate the Java gRPC sources:
 

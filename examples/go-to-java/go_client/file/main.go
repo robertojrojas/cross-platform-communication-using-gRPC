@@ -1,18 +1,20 @@
 package main
 
 import (
-	grpcClient "./transfer"
-	"google.golang.org/grpc"
+	"context"
+	"fmt"
+	"io"
 	"log"
 	"os"
-	"fmt"
-	"k8s.io/kops_master/_vendor/github.com/docker/distribution/context"
-	"io"
+
+	grpcClient "./transfer"
+	"google.golang.org/grpc"
 )
 
 const (
 	chunkSize = 1024 * 1024
 )
+
 type config struct {
 	serverHostPost string
 }
@@ -28,7 +30,6 @@ func getConfig() *config {
 
 	return &envConfig
 }
-
 
 func main() {
 
@@ -48,9 +49,7 @@ func main() {
 	client := grpcClient.NewFileTransferServiceClient(conn)
 	uploadFile(filename, client)
 
-
 }
-
 
 func uploadFile(filename string, client grpcClient.FileTransferServiceClient) {
 	f, err := os.Open(filename)
@@ -76,7 +75,7 @@ func uploadFile(filename string, client grpcClient.FileTransferServiceClient) {
 			chunk = chunk[:n]
 		}
 		fr := &grpcClient.FileRequest{
-			Data: chunk,
+			Data:     chunk,
 			Filename: filename,
 		}
 		stream.Send(fr)

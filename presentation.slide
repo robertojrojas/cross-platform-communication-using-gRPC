@@ -1,7 +1,7 @@
 Cross-Platform Communication Using gRPC
 GoLang Philly Meetup
-11 Apr 2017
-Tags: golangphilly, golang, docker
+9 May 2017
+Tags: golangphilly, golang, gRPC
 
 Roberto Rojas
 Chariot Solutions
@@ -13,7 +13,7 @@ https://github.com/GoLangPhilly/presentations/201704/cross-platform-communicatio
 
 * About Me
 
-- 20 years as Software Developer
+- Software Developer
 - mainly working on backend services *nix for environments
 - Java, NodeJS, Python, and C/C++
 - 2 years with Go

@@ -1,7 +1,8 @@
 # GolangPhilly Talk
 
-This talk was presented on April 11th, 2017 entitled "Cross-Platform Communication Using gRPC"
+This talk was presented on May 10th, 2017 entitled "Cross-Platform Communication Using gRPC"
 
+![Roberto Presentation Photo](cross-platform-presentation.jpeg)
 
 In this repo are the talk slides along with supporting code.
 

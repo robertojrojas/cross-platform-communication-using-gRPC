@@ -1,24 +1,24 @@
 package org.golangphilly.grpc.file.transfer;
 
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.2.0)",
+    value = "by gRPC proto compiler (version 1.16.1)",
     comments = "Source: file/server.proto")
 public final class FileTransferServiceGrpc {
 
@@ -27,15 +27,37 @@ public final class FileTransferServiceGrpc {
   public static final String SERVICE_NAME = "FileTransferService";
 
   // Static method descriptors that strictly reflect the proto.
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<org.golangphilly.grpc.file.transfer.Server.FileRequest,
-      org.golangphilly.grpc.file.transfer.Server.FileResponse> METHOD_UPLOAD =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING,
-          generateFullMethodName(
-              "FileTransferService", "Upload"),
-          io.grpc.protobuf.ProtoUtils.marshaller(org.golangphilly.grpc.file.transfer.Server.FileRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(org.golangphilly.grpc.file.transfer.Server.FileResponse.getDefaultInstance()));
+  private static volatile io.grpc.MethodDescriptor<org.golangphilly.grpc.file.transfer.Server.FileRequest,
+      org.golangphilly.grpc.file.transfer.Server.FileResponse> getUploadMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Upload",
+      requestType = org.golangphilly.grpc.file.transfer.Server.FileRequest.class,
+      responseType = org.golangphilly.grpc.file.transfer.Server.FileResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+  public static io.grpc.MethodDescriptor<org.golangphilly.grpc.file.transfer.Server.FileRequest,
+      org.golangphilly.grpc.file.transfer.Server.FileResponse> getUploadMethod() {
+    io.grpc.MethodDescriptor<org.golangphilly.grpc.file.transfer.Server.FileRequest, org.golangphilly.grpc.file.transfer.Server.FileResponse> getUploadMethod;
+    if ((getUploadMethod = FileTransferServiceGrpc.getUploadMethod) == null) {
+      synchronized (FileTransferServiceGrpc.class) {
+        if ((getUploadMethod = FileTransferServiceGrpc.getUploadMethod) == null) {
+          FileTransferServiceGrpc.getUploadMethod = getUploadMethod = 
+              io.grpc.MethodDescriptor.<org.golangphilly.grpc.file.transfer.Server.FileRequest, org.golangphilly.grpc.file.transfer.Server.FileResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "FileTransferService", "Upload"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.golangphilly.grpc.file.transfer.Server.FileRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.golangphilly.grpc.file.transfer.Server.FileResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new FileTransferServiceMethodDescriptorSupplier("Upload"))
+                  .build();
+          }
+        }
+     }
+     return getUploadMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -53,7 +75,7 @@ public final class FileTransferServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static FileTransferServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -68,13 +90,13 @@ public final class FileTransferServiceGrpc {
      */
     public io.grpc.stub.StreamObserver<org.golangphilly.grpc.file.transfer.Server.FileRequest> upload(
         io.grpc.stub.StreamObserver<org.golangphilly.grpc.file.transfer.Server.FileResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(METHOD_UPLOAD, responseObserver);
+      return asyncUnimplementedStreamingCall(getUploadMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_UPLOAD,
+            getUploadMethod(),
             asyncClientStreamingCall(
               new MethodHandlers<
                 org.golangphilly.grpc.file.transfer.Server.FileRequest,
@@ -107,7 +129,7 @@ public final class FileTransferServiceGrpc {
     public io.grpc.stub.StreamObserver<org.golangphilly.grpc.file.transfer.Server.FileRequest> upload(
         io.grpc.stub.StreamObserver<org.golangphilly.grpc.file.transfer.Server.FileResponse> responseObserver) {
       return asyncClientStreamingCall(
-          getChannel().newCall(METHOD_UPLOAD, getCallOptions()), responseObserver);
+          getChannel().newCall(getUploadMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -187,10 +209,38 @@ public final class FileTransferServiceGrpc {
     }
   }
 
-  private static final class FileTransferServiceDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static abstract class FileTransferServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    FileTransferServiceBaseDescriptorSupplier() {}
+
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return org.golangphilly.grpc.file.transfer.Server.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("FileTransferService");
+    }
+  }
+
+  private static final class FileTransferServiceFileDescriptorSupplier
+      extends FileTransferServiceBaseDescriptorSupplier {
+    FileTransferServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class FileTransferServiceMethodDescriptorSupplier
+      extends FileTransferServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    FileTransferServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -203,8 +253,8 @@ public final class FileTransferServiceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new FileTransferServiceDescriptorSupplier())
-              .addMethod(METHOD_UPLOAD)
+              .setSchemaDescriptor(new FileTransferServiceFileDescriptorSupplier())
+              .addMethod(getUploadMethod())
               .build();
         }
       }

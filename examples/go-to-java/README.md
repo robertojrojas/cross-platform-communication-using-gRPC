@@ -3,11 +3,11 @@ Then install [Maven](https://maven.apache.org/install.html)
 
 To generate the Go gRPC sources:
 
-`protoc -I ./pb ./pb/file/service.proto --go_out=plugins=grpc:.`
+`protoc -I ./pb ./pb/file/server.proto --go_out=plugins=grpc:.`
 
 To generate the Java gRPC sources:
 
-`protoc -I ./pb --java_out ./fileserver/src/main/java ./pb/file/server.proto --grpc_out ./fileserver/src/main/java --plugin=protoc-gen-grpc=./grpc_java_plugin/protoc-gen-grpc-java-1.2.0-osx-x86_64.exe`
+`protoc -I ./pb --java_out ./fileserver/src/main/java ./pb/file/server.proto --grpc_out ./fileserver/src/main/java --plugin=protoc-gen-grpc=./grpc_java_plugin/protoc-gen-grpc-java-1.16.1-osx-x86_64.exe`
 
 To build the Go code:
 
@@ -17,6 +17,7 @@ To build the Go code:
 
 To build and run the Java gRPC server:
 
+`cd fileserver && mvn clean package`
 `mvn clean package exec:java -Dexec.mainClass=org.golangphilly.grpc.file.transfer.FileTransferServerMain -Dexec.args="$HOME"`
 
 In another terminal:

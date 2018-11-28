@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"time"
+	"errors"
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
@@ -89,6 +90,10 @@ func (cs *containerService) GetContainerStats(csr *ContainerStatsRequest, stream
 		return err
 	}
 	defer cli.Close()
+
+	if len(csr.Container) == 0 {
+		return errors.New("Container name/ID required!");
+	}
 
 	ctx := context.Background()
 	response, err := cli.ContainerStats(ctx, csr.Container, true)

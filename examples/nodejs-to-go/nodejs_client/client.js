@@ -3,13 +3,19 @@
 const PROTO_PATH = '../pb/docker/service.proto';
 
 const fs = require('fs');
-const process = require('process');
-const grpc = require('grpc');
-const serviceDef = grpc.load(PROTO_PATH);
 const PORT = 9090;
 
-//const client = new serviceDef.DockerService(`localhost:${PORT}`, grpc.credentials.createInsecure());
-
+var grpc = require('grpc');
+var protoLoader = require('@grpc/proto-loader');
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH,
+    {keepCase: true,
+     longs: String,
+     enums: String,
+     defaults: true,
+     oneofs: true
+    });
+var dockerservice = grpc.loadPackageDefinition(packageDefinition).dockerservice;
 const cacert = fs.readFileSync('../../certs/ca.crt'),
       cert = fs.readFileSync('../../certs/client.crt'),
       key = fs.readFileSync('../../certs/client.key'),
@@ -18,7 +24,7 @@ const cacert = fs.readFileSync('../../certs/ca.crt'),
           'cert_chain': cert
       };
 const creds = grpc.credentials.createSsl(cacert, key, cert);
-const client = new serviceDef.DockerService(`localhost:${PORT}`, creds);
+const client = new dockerservice.DockerService(`localhost:${PORT}`, creds);
 
 
 var option = parseInt(process.argv[2], 10);

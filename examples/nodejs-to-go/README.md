@@ -8,6 +8,7 @@ To generate the Go gRPC sources:
 To build the code:
 
 `cd docker`
+`go get github.com/docker/docker/client`
 `go build .`
 
 To run the gRPC Server:

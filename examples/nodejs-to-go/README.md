@@ -13,6 +13,7 @@ To build the code:
 
 To run the gRPC Server:
 
+`export DOCKER_API_VERSION='1.27'`
 `./docker`
    
 
